@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+app.get("/", (req, res) => {
+  res.send("El backend está funcionando correctamente.");
+});
 
 
 
@@ -76,6 +79,10 @@ app.post("/chat", async( req, res ) => {
 app.post("/contact", async(req, res) => {
     const { name, email, message } = req.body;
 
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: "Todos los campos son obligatorios" });
+        }
+
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -101,6 +108,7 @@ app.post("/contact", async(req, res) => {
 });
 
 
-app.listen( 3001, () => {
-    console.log("Servidor corriendo en el puerto 3001");
-} );
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
