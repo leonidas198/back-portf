@@ -162,7 +162,7 @@
       const data = Object.fromEntries(formData);
 
       try {
-        const res = await fetch("/send", {
+        const res = await fetch("/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
