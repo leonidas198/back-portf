@@ -11,9 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const openai = new OpenAI({
-    apikey: process.env.OPENAI_API_KEY,
-});
+
 
 
 
